@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+
 /**
  * A class for predicting the next word in a sequence using a unigram model.
  * The model is trained on input text and maps each word to a list of 
@@ -52,6 +53,36 @@ public class UnigramWordPredictor implements WordPredictor {
     List<String> trainingWords = tokenizer.tokenize(scanner);
 
     // TODO: Convert the trainingWords into neighborMap here
+
+      
+    
+      // System.out.println(trainingWords);
+
+      Map<String, List<String>> wordsMap =  new HashMap<>();
+  
+      for(int i = 0; i < trainingWords.size() - 1; i ++){
+        String word = trainingWords.get(i);
+        String nexdWord = trainingWords.get( i + 1);
+
+        wordsMap.computeIfAbsent(word, k -> new ArrayList<>()).add(nexdWord);
+      }
+
+
+      //found this method to use- computeIfAbsent
+      // looked up @ https://www.w3schools.com/java/ref_hashmap_computeifabsent.asp
+
+
+
+      
+      this.neighborMap = wordsMap;
+     
+          // getNeighborMap(wordsMap);
+      
+        
+      
+
+      // System.out.println(wordsMap);
+  
   }
 
   /**
@@ -101,6 +132,14 @@ public class UnigramWordPredictor implements WordPredictor {
   public String predictNextWord(List<String> context) {
     // TODO: Return a predicted word given the words preceding it
     // Hint: only the last word in context should be looked at
+    
+    // String lastWord = context.get(-1);
+    // System.out.println(context);
+
+
+
+
+
     return null;
   }
   
